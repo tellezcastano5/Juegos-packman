@@ -17,11 +17,19 @@ class Pacman {
     moveProcess() {
         this.changeDirectionIfPossible();
         this.moveForwards();
+
+        if (this.x < -this.width) {
+            this.x = canvas.width;
+        } else if (this.x > canvas.width) {
+            this.x = -this.width;
+        }
+
         if (this.checkCollisions()) {
             this.moveBackwards();
             return;
         }
     }
+
 
     eat() {
         for (let i = 0; i < map.length; i++) {
